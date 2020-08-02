@@ -10,19 +10,23 @@ const subSchema = new Schema({
     type: String,
     required: "Must enter exercise name!",
   },
-  duration: Number,
+  duration: { type: Number },
 
-  weight: Number,
+  weight: { type: Number },
 
-  sets: Number,
+  sets: { type: Number },
 
-  reps: Number,
+  reps: { type: Number },
 
-  distance: Number,
+  distance: { type: Number },
 });
+
 const workoutSchema = new Schema({
-  day: new Date().setDate(new Date().getDate() - 10),
-  exercises: [{ subSchema }],
+  day: {
+    type: Date,
+    default: Date.now,
+  },
+  exercises: [subSchema],
 });
 
 const Workout = mongoose.model("Workout", workoutSchema);
