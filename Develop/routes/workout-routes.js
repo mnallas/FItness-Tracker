@@ -5,8 +5,8 @@ const {
   addExercise,
 } = require("../controllers/workout-controller.js");
 
-router.post("/workout", newWorkout);
-router.get("/workout", getWorkout);
-router.put("/workout", addExercise);
+router.post("/api/workouts", newWorkout);
+router.get("/api/workouts", getWorkout);
+router.put("/api/workouts", addExercise);
 
 module.exports = router;

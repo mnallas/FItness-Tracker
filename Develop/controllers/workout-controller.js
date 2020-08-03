@@ -7,13 +7,12 @@ module.exports = {
       .catch((err) => res.send(err)),
 
   getWorkout: (req, res) => {
-    !req.query.id
-      ? Workout.find({})
-          .then((allWorkout) => res.send(allWorkout))
-          .catch((err) => res.send(err))
-      : Workout.findById(req.query.id)
-          .then((foundWorkout) => res.send(foundWorkout))
-          .catch((err) => res.send(err));
+    Workout.find({})
+      .then((foundWorkout) => {
+        res.send(foundWorkout);
+        console.log(foundWorkout);
+      })
+      .catch((err) => res.send(err));
   },
 
   addExercise: async (req, res) => {
