@@ -25,7 +25,7 @@ const subSchema = new Schema(
 );
 
 const workoutSchema = new Schema({
-  day: { type: Number },
+  day: { type: Number, default: Date.now() },
   exercises: [subSchema],
 });
 

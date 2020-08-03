@@ -2,11 +2,7 @@ const Workout = require("../models/workout");
 
 module.exports = {
   newWorkout: (req, res) => {
-    const workout = {
-      day: new Date().getTime(),
-      exercises: [req.body],
-    };
-    Workout.create(workout)
+    Workout.create(req.body)
       .then((result) => res.send(result))
       .catch((err) => res.send(err));
   },
@@ -24,15 +20,12 @@ module.exports = {
 
   addExercise: async (req, res) => {
     try {
-      const foundExercise = await Workout.findById(req.params.id);
-      foundExercise.exercises.push({
-        day: new Date().getTime(),
-        exercise: [req.body],
-      });
-      await foundExercise.save();
-      res.send(foundExercise);
-    } catch (error) {
-      res.send(error);
+      const exercise = await Workout.findById(req.params.id);
+      exercise.exercises.push(req.body);
+      await exercise.save();
+      res.send(exercise);
+    } catch (err) {
+      res.send(err);
     }
   },
 };
